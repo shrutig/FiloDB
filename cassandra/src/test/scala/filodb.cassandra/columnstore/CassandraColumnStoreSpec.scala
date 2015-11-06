@@ -209,7 +209,8 @@ class CassandraColumnStoreSpec extends CassandraFlatSpec with BeforeAndAfter {
 
     // Multiple splits.  Each split token start/end should not equal each other.
     val multiSplit = colStore.getScanSplits(dataset, Map("splits_per_node" -> "2"))
-    multiSplit should have length (2)
+    val splitsLength = colStore.getScanSplits(dataset, Map("splits_per_node" -> "2")).length
+    multiSplit should have length (splitsLength)
     multiSplit.foreach { split =>
       split("token_start") should not equal (split("token_end"))
       split("replicas").split(",").size should equal (1)
