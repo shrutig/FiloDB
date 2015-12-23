@@ -39,7 +39,7 @@ object CliMain {
     }.toList
     val prompt: Prompt = new Prompt(chars)
     val conf = new SparkConf(false)
-      .setMaster(args.mkString(","))
+      .setMaster(args(0))
       .setAppName("cli")
       // Set the following in spark configuration
       /*.set("spark.filodb.cassandra.hosts", "localhost")

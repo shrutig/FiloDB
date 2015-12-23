@@ -38,6 +38,8 @@ bashScriptExtraDefines +=
 batScriptExtraDefines +=
   s"""set _JAVA_OPTS=%_JAVA_OPTS% -DaddedJar=%APP_LIB_DIR%\\filodb-spark-assembly-${version.value}.jar"""
 
+addCommandAlias("createZip", "; clean ; spark/assembly ; stage ; universal:packageBin")
+
 lazy val core = (project in file("core"))
                   .settings(mySettings:_*)
                   .settings(name := "filodb-core")
